@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 // 컴포넌트 단위로 나누어 보자.
-function Movie({ movieImg, title, summary, genres }) {
+function Movie({ id, movieImg, title, summary, genres }) {
     return (
         <div>
             <img src={movieImg} alt={title} />
@@ -11,7 +11,7 @@ function Movie({ movieImg, title, summary, genres }) {
             {/*그러나 링크를 클릭하면 웹페이지 화면전체가 재실행(페이지 새로고침)되기에 좋지 않다.*/}
             {/*우리의 목적은 SPA를 만드는 것이기 때문이다.*/}
             <div>
-                <Link to="/movie">{title}</Link>
+                <Link to={`/movie/${id}`}>{title}</Link>
             </div>
             <p>{summary}</p>
             <ul>
@@ -22,6 +22,7 @@ function Movie({ movieImg, title, summary, genres }) {
 }
 
 Movie.propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     movieImg: PropTypes.string,
     summary: PropTypes.string.isRequired,
